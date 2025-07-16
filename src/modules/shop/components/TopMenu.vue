@@ -20,20 +20,45 @@
         <span class="self-center whitespace-nowrap text-xl font-semibold">Termcode</span>
       </a>
       <div class="mt-2 sm:mt-0 sm:flex md:order-2">
-        <!-- Login Button -->
-        <button
-          type="button"
-          class="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
-        >
-          Login
-        </button>
-        <button
-          type="button"
-          class="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
-        >
-          Register
-        </button>
-        <!-- Register Button -->
+        <template v-if="!authStore.isAuthenticated">
+          <!-- Login Button -->
+          <RouterLink
+            to="/auth/login"
+            type="button"
+            class="mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          >
+            Login
+          </RouterLink>
+          <RouterLink
+            to="/auth/register"
+            type="button"
+            class="mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
+          >
+            Register
+          </RouterLink>
+          <!-- Register Button -->
+        </template>
+
+        <template v-if="!authStore.isAuthenticated">
+          <!-- Login Button -->
+          <RouterLink
+            v-if="authStore.isAdmin"
+            to="/admin"
+            type="button"
+            class="mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          >
+            Admin
+          </RouterLink>
+          <button
+            @click="authStore.logout()"
+            type="button"
+            class="mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
+          >
+            Cerrar sesion
+          </button>
+          <!-- Register Button -->
+        </template>
+
         <button
           data-collapse-toggle="navbar-sticky"
           type="button"
@@ -99,6 +124,10 @@
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useAuthStore } from '@/modules/auth/stores/auth.stores';
+
+const authStore = useAuthStore();
+</script>
 
 <style scoped></style>
