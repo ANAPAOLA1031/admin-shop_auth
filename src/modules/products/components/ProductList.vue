@@ -11,11 +11,9 @@
 <script setup lang="ts">
 import ProductCard from '@/modules/products/components/ProductCard.vue';
 import type { Product } from '../interfaces/product';
-
 interface Props {
   products: Product[];
 }
-
 defineProps<Props>();
 </script>
 

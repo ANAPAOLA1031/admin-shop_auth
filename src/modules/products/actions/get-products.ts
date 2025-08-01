@@ -1,17 +1,12 @@
-import { tesloApi } from '@/api/TesloApi';
+import { tesloApi } from '@/api/tesloApi';
 import type { Product } from '../interfaces/product';
 import { getProductImage } from '.';
 
 export const getProducts = async (page: number = 1, limit: number = 10) => {
   try {
-    const { data } = await tesloApi.get<Product[]>(`/products?limit=${limit}&offset=${page}`);
-    console.log(data);
-    /* return data.map(product=>{
-            return{
-                ...product,
-                images: product.images.map(getProductImage),
-            }
-        }); */
+    const { data } = await tesloApi.get<Product[]>(
+      `/products?limit=${limit}&offset=${page * limit}`,
+    );
 
     return data.map((product) => ({
       ...product,

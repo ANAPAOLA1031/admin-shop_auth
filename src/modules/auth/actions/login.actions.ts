@@ -1,7 +1,6 @@
-import { tesloApi } from '@/api/TesloApi';
-import { User, type AuthResponse } from '../interfaces';
+import { tesloApi } from '@/api/tesloApi';
+import { type AuthResponse, type User } from '../interfaces';
 import { isAxiosError } from 'axios';
-import { ok } from 'assert';
 
 interface LoginError {
   ok: false;
@@ -22,6 +21,7 @@ export const loginActions = async (
       email,
       password,
     });
+
     return {
       ok: true,
       user: data.user,
@@ -35,6 +35,6 @@ export const loginActions = async (
       };
     }
     console.log(error);
-    throw new Error('No se puede realizar la accion');
+    throw new Error('No se puede realizar la acción');
   }
 };

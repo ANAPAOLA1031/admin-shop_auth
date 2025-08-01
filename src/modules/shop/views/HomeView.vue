@@ -99,7 +99,8 @@
     :has-more-data="!!products && products.length < 10"
     :is-first-page="page === 1"
     :page="page"
-  ></ButtonNavigation>
+  >
+  </ButtonNavigation>
 </template>
 
 <script setup lang="ts">
@@ -112,12 +113,10 @@ import { useRoute } from 'vue-router';
 import { ref } from 'vue';
 import { watch } from 'vue';
 import { watchEffect } from 'vue';
-//getProducts();
 
 const route = useRoute();
 const page = ref(Number(route.query.page || 1));
 const queryClient = useQueryClient();
-console.log(page);
 
 const { data: products = [] } = useQuery({
   queryKey: ['products', { page: page }],
@@ -141,3 +140,4 @@ watchEffect(() => {
 </script>
 
 <style scoped></style>
+@/api/tesloApi

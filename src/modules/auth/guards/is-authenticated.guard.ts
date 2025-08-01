@@ -1,5 +1,5 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
-import { useAuthStore } from '../stores/auth.stores';
+import { useAuthStores } from '../stores/auth.stores';
 import { AuthStatus } from '../interfaces';
 
 const isAuthenticatedGuard = async (
@@ -12,8 +12,10 @@ const isAuthenticatedGuard = async (
     from: RouteLocationNormalized,
     next: NavigationGuardNext,
   ) => {
-    const authStore = useAuthStore();
+    const authStore = useAuthStores();
     await authStore.checkAuthStatus();
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     authStore.authStatus === AuthStatus.Unautenthicated ? next({ name: 'home' }) : next();
   };
 };

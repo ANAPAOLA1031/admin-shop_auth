@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-2xl font-semibold mb-4">Nueva cuenta</h1>
+  <h1 class="text-2xl font-semibold mb-4">Nueva Cuenta</h1>
   <form @submit.prevent="onRegister">
     <!-- Username Input -->
     <div class="mb-4">
@@ -16,7 +16,7 @@
 
     <!-- Username Input -->
     <div class="mb-4">
-      <label for="email" class="block text-gray-600">Correo electronico</label>
+      <label for="email" class="block text-gray-600">Correo electrónico</label>
       <input
         v-model="myForm.email"
         type="text"
@@ -41,30 +41,31 @@
 
     <!-- Forgot Password Link -->
     <div class="mb-6 text-blue-500">
-      <a href="#" class="hover:underline">Olvido la contraseña?</a>
+      <a href="#" class="hover:underline">¿Olvidó la Contraseña?</a>
     </div>
     <!-- Login Button -->
     <button
       type="submit"
       class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
     >
-      Crear cuenta
+      Crear Cuenta
     </button>
   </form>
   <!-- Sign up  Link -->
   <div class="mt-6 text-blue-500 text-center">
-    <RouterLink :to="{ name: 'login' }" class="hover:underline">Ingresar por aqui</RouterLink>
+    <RouterLink :to="{ name: 'login' }" class="hover:underline">Ingresar por aquí</RouterLink>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAuthStore } from '../stores/auth.stores';
+import { useAuthStores } from '../stores/auth.stores';
 import { useToast } from 'vue-toastification';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const router = useRouter();
-const authStore = useAuthStore();
+const authStore = useAuthStores();
 const toast = useToast();
 
 const myForm = reactive({
@@ -75,7 +76,7 @@ const myForm = reactive({
 
 const onRegister = async () => {
   const { ok, message } = await authStore.register(myForm.fullName, myForm.email, myForm.password);
-  console.log(myForm);
+
   if (ok) return;
   toast.error(message);
 };

@@ -3,7 +3,7 @@
   <form @submit.prevent="onLogin">
     <!-- Username Input -->
     <div class="mb-4">
-      <label for="email" class="block text-gray-600">Correo electronico</label>
+      <label for="email" class="block text-gray-600">Correo Electronico</label>
       <input
         v-model="myForm.email"
         type="text"
@@ -34,11 +34,11 @@
         name="remember"
         class="text-blue-500"
       />
-      <label for="remember" class="text-gray-600 ml-2">Recordar usuario</label>
+      <label for="remember" class="text-gray-600 ml-2">Recordar Usuario</label>
     </div>
     <!-- Forgot Password Link -->
     <div class="mb-6 text-blue-500">
-      <a href="#" class="hover:underline">Olvidaste contraseña?</a>
+      <a href="#" class="hover:underline">Olvidaste Contraseña?</a>
     </div>
     <!-- Login Button -->
     <button
@@ -57,12 +57,11 @@
 <script lang="ts" setup>
 import { reactive, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAuthStore } from '../stores/auth.stores';
+import { useAuthStores } from '../stores/auth.stores';
 import { useToast } from 'vue-toastification';
-import { useLocalStorage } from '@vueuse/core';
 
 const router = useRouter();
-const authStore = useAuthStore();
+const authStore = useAuthStores();
 const toast = useToast();
 
 const myForm = reactive({

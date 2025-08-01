@@ -7,7 +7,7 @@
         <div
           class="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6"
         >
-          <span>Copyright © {{ new Date().getFullYear() }} by UPJR IRT 6A</span>
+          <span>Copyright © {{ new Date().getFullYear() }} by UPJR/IRT/6A team </span>
           <a rel="noopener noreferrer" href="#">
             <span>Privacy policy</span>
           </a>

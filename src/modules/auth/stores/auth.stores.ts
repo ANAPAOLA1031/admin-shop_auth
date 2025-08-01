@@ -1,13 +1,10 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
-import { AuthStatus } from '../interfaces';
-import { User } from '../interfaces/user';
-import isAuthenticatedGuard from '../guards/is-authenticated.guard';
-import { loginActions, registerAction } from '../actions';
+import { AuthStatus, type User } from '../interfaces';
+import { checkAuthAction, loginActions, registerAction } from '../actions';
 import { useLocalStorage } from '@vueuse/core';
-import { i } from '@tanstack/vue-query/build/legacy/queryClient-CAHOJcvF';
 
-export const useAuthStore = defineStore('auth', () => {
+export const useAuthStores = defineStore('auth', () => {
   const authStatus = ref<AuthStatus>(AuthStatus.Checking);
   const user = ref<User | undefined>();
   const token = ref(useLocalStorage('token', ''));
@@ -54,7 +51,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const checkAuthStatus = async (): Promise<boolean> => {
     try {
-      const statusResp = await checkAuthStatus();
+      const statusResp = await checkAuthAction();
       if (!statusResp.ok) {
         logout();
         return false;
@@ -84,6 +81,6 @@ export const useAuthStore = defineStore('auth', () => {
     logout,
     checkAuthStatus,
 
-    //Todo: getter para saber si es Admin o no
+    // ToDo: getter para saber si es Admin o no
   };
 });

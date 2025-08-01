@@ -1,6 +1,8 @@
 <template>
   <div>
+    <!-- Update this line, not erase-->
     <FullScreenLoader v-if="authStore.isChecking" />
+
     <RouterView v-else></RouterView>
 
     <VueQueryDevtools />
@@ -8,14 +10,14 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView, useRoute, useRouter } from 'vue-router';
-
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
-import { useAuthStore } from './modules/auth/stores/auth.stores';
+import { useAuthStores } from './modules/auth/stores/auth.stores';
 import { AuthStatus } from './modules/auth/interfaces';
+import { useRoute, useRouter } from 'vue-router';
 import FullScreenLoader from './modules/common/components/FullScreenLoader.vue';
 
-const authStore = useAuthStore();
+const authStore = useAuthStores();
+
 const router = useRouter();
 const route = useRoute();
 
@@ -35,4 +37,5 @@ authStore.$subscribe(
   },
 );
 </script>
+
 <style scoped></style>

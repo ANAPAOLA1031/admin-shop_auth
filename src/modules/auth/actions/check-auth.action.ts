@@ -1,4 +1,4 @@
-import { tesloApi } from '@/api/TesloApi';
+import { tesloApi } from '@/api/tesloApi';
 import type { AuthResponse, User } from '../interfaces';
 import { isAxiosError } from 'axios';
 
@@ -20,6 +20,7 @@ export const checkAuthAction = async (): Promise<CheckError | CheckSuccess> => {
       };
     }
     const { data } = await tesloApi.get<AuthResponse>('/auth/check-status');
+
     return {
       ok: true,
       user: data.user,
@@ -31,6 +32,6 @@ export const checkAuthAction = async (): Promise<CheckError | CheckSuccess> => {
         ok: false,
       };
     }
-    throw new Error('No se pudo verificar la sesion');
+    throw new Error('No se pudo verificar la sesión');
   }
 };

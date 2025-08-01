@@ -1,5 +1,5 @@
-import { tesloApi } from '@/api/TesloApi';
-import { User, type AuthResponse } from '../interfaces';
+import { tesloApi } from '@/api/tesloApi';
+import { type AuthResponse, type User } from '../interfaces';
 import { isAxiosError } from 'axios';
 
 interface RegisterError {
@@ -23,6 +23,7 @@ export const registerAction = async (
       email,
       password,
     });
+
     return {
       ok: true,
       user: data.user,
@@ -30,6 +31,6 @@ export const registerAction = async (
     };
   } catch (error) {
     console.log(error);
-    throw new Error('No se pudo realizar el registro');
+    throw new Error('No se puede realizar el registro');
   }
 };

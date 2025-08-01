@@ -21,7 +21,6 @@
       </a>
       <div class="mt-2 sm:mt-0 sm:flex md:order-2">
         <template v-if="!authStore.isAuthenticated">
-          <!-- Login Button -->
           <RouterLink
             to="/auth/login"
             type="button"
@@ -34,13 +33,11 @@
             type="button"
             class="mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
           >
-            Register
-          </RouterLink>
+            Register</RouterLink
+          >
           <!-- Register Button -->
         </template>
-
-        <template v-if="!authStore.isAuthenticated">
-          <!-- Login Button -->
+        <template v-if="authStore.isAuthenticated">
           <RouterLink
             v-if="authStore.isAdmin"
             to="/admin"
@@ -54,11 +51,10 @@
             type="button"
             class="mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
           >
-            Cerrar sesion
+            Cerrar Sesión
           </button>
           <!-- Register Button -->
         </template>
-
         <button
           data-collapse-toggle="navbar-sticky"
           type="button"
@@ -125,9 +121,9 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@/modules/auth/stores/auth.stores';
+import { useAuthStores } from '@/modules/auth/stores/auth.stores';
 
-const authStore = useAuthStore();
+const authStore = useAuthStores();
 </script>
 
 <style scoped></style>
